@@ -8,27 +8,20 @@
 
 import Foundation
 import UIKit
+import UserNotifications
 
 class MainTabBarController: UITabBarController {
 
-    var email: String?
-    var password: String?
+    var currentUser: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        guard let viewControllers = viewControllers else {
-            return
-        }
+     
+        let vc = self.viewControllers![0] as? ProfileNavigationController
+        vc?.currentUser = currentUser
         
-        for viewController in viewControllers {
-            if let profileNavigationController = viewController as? ProfileNavigationController {
-                if let profileViewController = profileNavigationController.viewControllers.first as? ProfileViewController {
-                    profileViewController.email = email
-                    profileViewController.password = password
-                }
-            }
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
         }
     }
-    
 }

@@ -2,26 +2,36 @@
 //  ProfileViewController.swift
 //  SmartLibrary
 //
-//  Created by Кирилл Галимзянов on 01.03.2020.
+//  Created by Кирилл Галимзянов on 12.03.2020.
 //  Copyright © 2020 Kirill Galimzyanov. All rights reserved.
 //
 
-import Foundation
 import UIKit
-import Firebase
 
 class ProfileViewController: UIViewController {
     
-    var email: String?
-    var password: String?
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    
+    var currentUser: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        titleLabel.text = currentUser.title
+        emailLabel.text = currentUser.phone
     }
     
-    @IBAction func tappedLogOut(_ sender: Any) {
-        
-        try! Auth.auth().signOut()
+    @IBAction func accountTapped(_ sender: Any) {
+    }
+    
+    @IBAction func notificationsTapped(_ sender: Any) {
+    }
+    
+    @IBAction func privacyTapped(_ sender: Any) {
+    }
+    
+    @IBAction func logOutTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
 }
